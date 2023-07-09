@@ -50,6 +50,7 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(methodOverride());
 app.use(errorHandler());
+app.use(express.static(path.join(__dirname, 'public')));
 
 //Middleware to add prismic content
 app.use((req, res, next) => {
