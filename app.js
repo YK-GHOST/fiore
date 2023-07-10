@@ -105,7 +105,7 @@ const handleRequest = async (api) => {
   //     });
   //   });
 
-  console.log(collections);
+  // console.log(collections);
 
   return {
     assets,
@@ -148,7 +148,7 @@ app.get('/detail/:uid', async (req, res) => {
     fetchLinks: 'collection.title',
   });
 
-  console.log(product);
+  // console.log(product);
 
   res.render('pages/detail', {
     ...defaults,

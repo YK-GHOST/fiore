@@ -12,6 +12,7 @@ const IS_DEVELOPMENT = process.env.NODE_ENV === 'dev';
 const dirApp = path.join(__dirname, 'app');
 const dirShared = path.join(__dirname, 'shared');
 const dirStyles = path.join(__dirname, 'styles');
+// const dirFonts = path.join(__dirname, 'styles/fonts');
 const dirNode = 'node_modules';
 
 module.exports = {
@@ -19,6 +20,7 @@ module.exports = {
 
   resolve: {
     modules: [dirApp, dirShared, dirStyles, dirNode],
+    // alias: { dirFonts },
   },
 
   plugins: [
@@ -88,12 +90,10 @@ module.exports = {
       },
 
       {
-        test: /\.(jpe?g|png|svg|jpeg|gif|woff2?|fnt|webp)$/,
-        loader: 'file-loader',
-        options: {
-          name(file) {
-            return '[hash].[ext]';
-          },
+        test: /\.(png|jpg|gif|jpe?g|svg|woff2?|fnt|webp|mp4)$/,
+        type: 'asset/resource',
+        generator: {
+          filename: '[name].[hash].[ext]',
         },
       },
 

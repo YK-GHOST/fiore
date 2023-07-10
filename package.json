@@ -26,6 +26,7 @@
     "imagemin-jpegtran": "^7.0.0",
     "imagemin-optipng": "^8.0.0",
     "imagemin-svgo": "^10.0.1",
+    "include-media": "^2.0.0",
     "method-override": "^3.0.0",
     "mini-css-extract-plugin": "^2.7.6",
     "morgan": "^1.10.0",
