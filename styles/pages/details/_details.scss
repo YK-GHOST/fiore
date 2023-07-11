@@ -1,38 +1,99 @@
 .detail {
+  @extend %cover;
+  @extend %center;
+  background: $color-quicksand;
+  color: $color-quarter-spanish-white;
 }
 .detail__wrapper {
+  align-items: center;
+  display: flex;
 }
+
 .detail__media {
+  height: 78.2rem;
+  position: relative;
+  width: 55.4rem;
 }
 .detail__media__image {
+  @extend %cover;
+
+  object-fit: cover;
 }
+
 .detail__information {
+  padding-left: 8.2rem;
 }
+
 .detail__information__colllection {
+  @extend %description-12;
+
+  margin-bottom: 4rem;
+  text-transform: uppercase;
 }
 
 .detail__information__title {
+  @extend %title-120;
+
+  max-width: 60rem;
 }
+
 .detail__information__content {
+  padding-left: 18rem;
 }
+
 .detail__information__highlights {
+  margin-top: 6rem;
 }
 
 .detail__information__highlight {
+  align-items: center;
+  display: flex;
+
+  &:not(:first-child) {
+    margin-top: 4rem;
+  }
 }
+
 .detail__information__highlight__icon {
+  border: 1px solid currentColor;
+  border-radius: 50%;
+  height: 4rem;
+  margin-right: 4rem;
+  width: 4rem;
 }
 
 .detail__information__highlight__text {
+  @extend %description-16;
 }
 
 .detail__information__list {
+  margin-top: 4rem;
+  max-width: 44rem;
+}
+
+.detail__information__item {
+  display: flex;
+
+  &:not(:first-child) {
+    margin-top: 4rem;
+  }
 }
 
 .detail__information__item__title {
+  @extend %description-12;
+
+  padding-right: 2.5rem;
+  width: 10rem;
 }
 .detail__information__item__description {
+  @extend %description-16;
+  letter-spacing: 0.03rem;
+  line-height: 1.5;
 }
 
 .detail__information__link {
+  @extend %title-30;
+
+  display: inline-block;
+  margin-top: 3rem;
 }

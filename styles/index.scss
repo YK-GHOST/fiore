@@ -12,12 +12,14 @@
 @import './base/fonts';
 @import './base/base';
 
+@import './components/preloader';
+
 @import './pages/about/about';
 @import './pages/about/content';
 @import './pages/about/gallery';
 @import './pages/about/highlight';
 
-@import './pages/collections/collecitons';
+@import './pages/collections/collections';
 
 @import './pages/details/details';
 

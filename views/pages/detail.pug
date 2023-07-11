@@ -21,12 +21,13 @@ block content
                 svg.detail__information__highlight__icon
                   use(xlink:href=`sprite-${highlight.highlights_icon.toLowerCase()}`)
 
-                span.detail__information__highlight__text=highlight.highlights_text
+                span.detail__information__highlight__text!=highlight.highlights_text.replace(/\n/, '<br>')
 
           
           .detail__information__list
             each item in product.data.information
-              strong.detail__information__item__title=item.information_label
-              span.detail__information__item__description=item.information_description
+              p.detail__information__item
+                strong.detail__information__item__title=item.information_label
+                span.detail__information__item__description=item.information_description
 
           a.detail__information__link(href=product.data.link_url.url target='_blank')=product.data.link_text
