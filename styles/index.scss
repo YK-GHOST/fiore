@@ -8,11 +8,14 @@
 
 @import './mixins/titles';
 @import './mixins/description';
+@import './mixins/_vertical-titles.scss';
 
 @import './base/fonts';
 @import './base/base';
 
 @import './components/preloader';
+
+@import './layout/navigation';
 
 @import './pages/about/about';
 @import './pages/about/content';

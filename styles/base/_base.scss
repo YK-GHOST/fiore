@@ -5,7 +5,11 @@
 }
 
 html {
-  font-size: calc(100vw / 1920 * 10);
+  font-size: calc(100vw / 1920px * 10px);
+
+  @include media('<phone') {
+    font-size: calc(100vw / 750 * 10);
+  }
 }
 
 body {
@@ -13,7 +17,7 @@ body {
   font-family: $font-suisse-bp;
 
   @include media('<phone') {
-    font-size: 10rem;
+    font-size: calc(100vw / 750 * 10);
   }
 }
 
@@ -25,4 +29,12 @@ a {
 
 img {
   vertical-align: middle;
+}
+
+button {
+  background: none;
+  color: inherit;
+  cursor: pointer;
+  border: none;
+  outline: none;
 }

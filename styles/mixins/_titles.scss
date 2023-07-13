@@ -6,6 +6,10 @@
 %title-30 {
   font-family: $font-george-x;
   font-size: 3rem;
+
+  @include media('<phone') {
+    font-size: 5.2rem;
+  }
 }
 
 %title-53 {
@@ -21,12 +25,17 @@
 %title-100 {
   font-family: $font-george-x;
   font-size: 10rem;
+  line-height: 1;
 }
 
 %title-120 {
   font-family: $font-george-x;
   font-size: 12rem;
   line-height: 0.82;
+
+  @include media('<phone') {
+    font-size: 18rem;
+  }
 }
 
 %title-200 {

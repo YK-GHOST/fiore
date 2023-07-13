@@ -1,15 +1,71 @@
 .about__highlight {
+  margin: 20rem 0;
+
+  &:first-child {
+    margin-top: 0;
+  }
+
+  &:last-child {
+    margin-bottom: 0;
+  }
 }
+
 .about__highlight__wrapper {
+  height: 104rem;
+  margin: auto;
+  position: relative;
+  width: 144rem;
+
+  .about__highlight:nth-child(4) & {
+    width: 104rem;
+  }
 }
 
 .about__highlight__label {
+  @extend %description-12;
+
+  margin-top: 10rem;
+  position: absolute;
+  left: 50%;
+  letter-spacing: 0.1rem;
+  text-align: center;
+  text-transform: uppercase;
+  transform: translateX(-50%);
+  width: 9.6rem;
 }
 
 .about__highlight__title {
+  @extend %title-200;
+
+  left: 50%;
+  padding-bottom: 2rem;
+  position: absolute;
+  transform: translate(-50%, -50%) rotate(-90deg);
+  top: 50%;
 }
 
 .about__highlight__media {
+  height: 76rem;
+  position: absolute;
+  width: 54rem;
+
+  .about__highlight:nth-child(4) & {
+    height: 52.8rem;
+    width: 36rem;
+  }
+
+  &:first-child {
+    left: 0;
+    top: 0;
+  }
+
+  &:last-child {
+    bottom: 0;
+    right: 0;
+  }
 }
 .about__highlight__media__image {
+  @extend %cover;
+
+  object-fit: cover;
 }
