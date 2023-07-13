@@ -142,6 +142,7 @@
 }
 
 .detail__button {
+  @extend %description-14;
   align-items: center;
   bottom: 5rem;
   display: flex;
