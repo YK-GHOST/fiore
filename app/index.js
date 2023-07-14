@@ -4,6 +4,7 @@ import About from './pages/About/About';
 import Collections from './pages/Collections/Collections';
 import Detail from './pages/Detail/Detail';
 import Home from './pages/Home/Home';
+import Preloader from './components/Preloader';
 
 if (module.hot) {
   module.hot.accept();
@@ -11,14 +12,20 @@ if (module.hot) {
 
 class App {
   constructor() {
+    this.createPreloader();
     this.createContent();
     this.createPages();
-    this.addLinkListeners(); //DES for page routing
+    this.addLinkListeners(); //DES: for page routing
+  }
+
+  createPreloader() {
+    this.preloader = new Preloader();
+    this.preloader.once('completed', this.onPreloaded.bind(this)); //DES: creating the event 'completed'
   }
 
   createContent() {
-    this.content = document.querySelector('.content'); //DES selecting the content class
-    this.template = this.content.getAttribute('data-template'); //DES getting the dataset-template
+    this.content = document.querySelector('.content'); //DES: selecting the content class
+    this.template = this.content.getAttribute('data-template'); //DES: getting the dataset-template
   }
 
   createPages() {
@@ -29,9 +36,13 @@ class App {
       home: new Home(),
     };
 
-    this.page = this.pages[this.template]; //DES getting the data from the pages object based on the template value
-    this.page.create(); //DES calling the create function of the current page (coming from Page class)
+    this.page = this.pages[this.template]; //DES: getting the data from the pages object based on the template value
+    this.page.create(); //DES: calling the create function of the current page (coming from Page class)
     this.page.show();
+  }
+
+  onPreloaded() {
+    this.preloader.destroy();
   }
 
   async replaceContent(url) {
@@ -53,6 +64,8 @@ class App {
       this.page = this.pages[this.template];
       this.page.create();
       this.page.show();
+
+      this.addLinkListeners();
     } catch (err) {
       console.log(err);
     }

@@ -26,6 +26,7 @@
 
 .navigation__link__icon {
   display: block;
+  width: 15rem;
 }
 
 .navigation__list {
@@ -39,7 +40,7 @@
 }
 
 .navigation__list__link {
-  @extend %title-20;
+  @extend %title-30;
 
   display: block;
 }
