@@ -58,6 +58,7 @@ app.use((req, res, next) => {
     endpoint: process.env.PRISMIC_ENDPOINT,
     linkResolver: handleLinkResolver,
   };
+
   res.locals.Prismic = Prismic;
   res.locals.Link = handleLinkResolver;
   res.locals.Numbers = (index) => {
