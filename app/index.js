@@ -38,11 +38,11 @@ class App {
 
     this.page = this.pages[this.template]; //DES: getting the data from the pages object based on the template value
     this.page.create(); //DES: calling the create function of the current page (coming from Page class)
-    this.page.show();
   }
 
   onPreloaded() {
     this.preloader.destroy();
+    this.page.show();
   }
 
   async replaceContent(url) {
