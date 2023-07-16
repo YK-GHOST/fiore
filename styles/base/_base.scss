@@ -5,7 +5,11 @@
 }
 
 html {
+  @extend %cover;
   font-size: calc(100vw / 1920px * 10px);
+
+  overflow: hidden;
+  position: fixed;
 
   @include media('<phone') {
     font-size: calc(100vw / 750 * 10);
@@ -13,8 +17,10 @@ html {
 }
 
 body {
+  @extend %cover;
   @extend %description-16;
   font-family: $font-suisse-bp;
+  position: fixed;
 }
 
 a {
@@ -33,4 +39,8 @@ button {
   cursor: pointer;
   border: none;
   outline: none;
+}
+
+.content {
+  @extend %cover;
 }

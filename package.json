@@ -34,6 +34,7 @@
     "morgan": "^1.10.0",
     "optipng-bin": "^9.0.0",
     "postcss-loader": "^7.3.3",
+    "prefix": "^1.0.0",
     "sass": "^1.63.6",
     "sass-loader": "^13.3.2",
     "terser-webpack-plugin": "^5.3.9",

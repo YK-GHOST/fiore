@@ -1,5 +1,6 @@
 import GSAP from 'gsap';
 import each from 'lodash/each';
+import Prefix from 'prefix';
 
 /**creates a Page object for pages
  * @param {string} element the class of root element of current page
@@ -12,10 +13,19 @@ export default class Page {
     this.id = id;
     this.selector = element;
     this.selectorChildren = { ...elements };
+
+    this.transformPrefix = Prefix('transform');
   }
 
   create() {
     this.element = document.querySelector(this.selector);
+
+    this.scroll = {
+      current: 0,
+      target: 0,
+      last: 0,
+      limit: 0,
+    };
 
     this.elements = {};
 
@@ -37,29 +47,88 @@ export default class Page {
         }
       }
     });
+
+    console.log(this.elements);
   }
 
   show() {
     return new Promise((resolve) => {
-      GSAP.fromTo(
+      this.animationIn = GSAP.timeline();
+
+      this.animationIn.fromTo(
         this.element,
         {
-          autoAlpha: 1,
+          autoAlpha: 0,
         },
         {
           autoAlpha: 1,
-          onComplete: resolve,
         }
       );
+
+      this.animationIn.call(() => {
+        this.addListeners();
+
+        resolve();
+      });
     });
   }
 
   hide() {
     return new Promise((resolve) => {
-      GSAP.to(this.element, {
+      this.removeListeners();
+
+      this.animationOut = GSAP.timeline();
+
+      this.animationOut.to(this.element, {
         autoAlpha: 0,
         onComplete: resolve,
       });
     });
+  }
+
+  onResize() {
+    if (this.elements.wrapper) {
+      this.scroll.limit =
+        this.elements.wrapper.clientHeight - window.innerHeight;
+    }
+  }
+
+  onMousewheel(event) {
+    const { deltaY } = event;
+
+    this.scroll.target += deltaY;
+  }
+
+  //DES LERPING
+  update() {
+    this.scroll.target = GSAP.utils.clamp(
+      0,
+      this.scroll.limit,
+      this.scroll.target
+    );
+
+    this.scroll.current = GSAP.utils.interpolate(
+      this.scroll.current,
+      this.scroll.target,
+      0.1
+    );
+
+    if (this.scroll.current < 0.01) {
+      this.scroll.current = 0;
+    }
+
+    if (this.elements.wrapper) {
+      this.elements.wrapper.style[
+        this.transformPrefix
+      ] = `translateY(-${this.scroll.current}px)`;
+    }
+  }
+
+  addListeners() {
+    window.addEventListener('mousewheel', this.onMousewheel.bind(this));
+  }
+
+  removeListeners() {
+    window.removeEventListener('mousewheel', this.onMousewheel.bind(this));
   }
 }
