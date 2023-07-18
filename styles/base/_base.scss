@@ -8,6 +8,8 @@ html {
   @extend %cover;
   font-size: calc(100vw / 1920px * 10px);
 
+  background: $color-contessa;
+  color: $color-quarter-spanish-white;
   overflow: hidden;
   position: fixed;
 
@@ -19,6 +21,7 @@ html {
 body {
   @extend %cover;
   @extend %description-16;
+
   font-family: $font-suisse-bp;
   position: fixed;
 }
@@ -39,6 +42,16 @@ button {
   cursor: pointer;
   border: none;
   outline: none;
+}
+
+img {
+  opacity: 0;
+  transition: opacity 0.4s ease;
+  vertical-align: middle;
+
+  &.loaded {
+    opacity: 1;
+  }
 }
 
 .content {

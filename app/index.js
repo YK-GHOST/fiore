@@ -5,16 +5,24 @@ import Collections from './pages/Collections/Collections';
 import Detail from './pages/Detail/Detail';
 import Home from './pages/Home/Home';
 import Preloader from './components/Preloader';
+import Navigation from './components/Navigation';
 
 class App {
   constructor() {
-    this.createPreloader();
     this.createContent();
+
+    this.createPreloader();
+    this.createNavigation();
+
     this.createPages();
     this.addLinkListeners(); //DES: for page routing
     this.addListeners();
 
     this.update();
+  }
+
+  createNavigation() {
+    this.navigation = new Navigation({ template: this.template });
   }
 
   createPreloader() {
@@ -49,7 +57,7 @@ class App {
     this.page.show();
   }
 
-  async replaceContent(url) {
+  async onChange(url) {
     await this.page.hide();
     try {
       const request = await fetch(url); //DES fetching the page url
@@ -61,6 +69,8 @@ class App {
       const divContent = div.querySelector('.content'); //DES selelcting the content element
 
       this.template = divContent.getAttribute('data-template');
+
+      this.navigation.onChange(this.template);
 
       this.content.setAttribute('data-template', this.template);
       this.content.innerHTML = divContent.innerHTML; //DES replacing the innerHTML of current Page's content element with divContent
@@ -111,7 +121,7 @@ class App {
 
         const { href } = link;
 
-        this.replaceContent(href);
+        this.onChange(href);
       };
     });
   }

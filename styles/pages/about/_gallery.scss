@@ -1,33 +1,31 @@
 .about__gallery {
-  height: 58.6rem;
-  margin: 20rem 0;
-  overflow: hidden;
+  height: 70.6rem;
   position: relative;
+  overflow: hidden;
+  pointer-events: none;
+  // visibility: hidden;
 
   &:first-child {
-    margin-top: 0;
+    margin-bottom: 0;
   }
 
   &:last-child {
     margin-bottom: 0;
   }
 }
-
 .about__gallery__wrapper {
-  align-items: center;
-  display: flex;
   position: absolute;
+  display: flex;
+  align-items: center;
   top: 50%;
   transform: translateY(-50%);
 }
-
 .about__gallery__media {
-  height: 43.7rem;
-  margin: 0 4rem;
   position: relative;
-  width: 38.9rem;
+  height: 43.7rem;
+  width: 30.9rem;
+  margin: 0 4rem;
 }
-
 .about__gallery__media__image {
   @extend %cover;
 

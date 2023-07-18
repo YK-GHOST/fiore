@@ -1,14 +1,14 @@
 extends ../base.pug
 
-block variables 
+block variables
     - var template = 'detail'
 
-block content 
-  .detail
+block content
+  .detail(data-background="#bc978c" data-color="#f9f1e7")
     .detail__wrapper
       figure.detail__media
         img.detail__media__image(src=product.data.image.url alt=product.data.image.alt)
-      
+
       .detail__information
         p.detail__information__colllection=product.data.collection.data.title
 
@@ -29,7 +29,7 @@ block content
 
                 span.detail__information__highlight__text!=highlight.highlights_text.replace(/\n/, '<br>')
 
-          
+
           .detail__information__list
             each item in product.data.information
               p.detail__information__item
@@ -39,7 +39,7 @@ block content
           a.detail__information__link(href=product.data.link_url.url target='_blank')=product.data.link_text
 
 
-    button.detail__button Close 
+    button.detail__button Close
        svg.detail__button__icon(xmlns="http://www.w3.org/2000/svg" viewBox="0 0 125 61")
         path(stroke="currentColor" fill="none" d="M62.5.5c34.24,0,62,13.43,62,30s-27.76,30-62,30S.5,47.07.5,30.5,28.26.5,62.5.5Zm0,.5c34,0,61.5,13.21,61.5,29.5S96.47,60,62.5,60,1,46.79,1,30.5,28.53,1,62.5,1Z")
-        //- path.detail__button__icon__path(stroke="#FFC400" fill="none" d="M62.5.5c34.24,0,62,13.43,62,30s-27.76,30-62,30S.5,47.07.5,30.5,28.26.5,62.5.5Zm0,.5c34,0,61.5,13.21,61.5,29.5S96.47,60,62.5,60,1,46.79,1,30.5,28.53,1,62.5,1Z")
+        path.detail__button__icon__path(stroke="#FFC400" fill="none" d="M62.5.5c34.24,0,62,13.43,62,30s-27.76,30-62,30S.5,47.07.5,30.5,28.26.5,62.5.5Zm0,.5c34,0,61.5,13.21,61.5,29.5S96.47,60,62.5,60,1,46.79,1,30.5,28.53,1,62.5,1Z")

@@ -10,6 +10,10 @@ import Title from '../animations/Title';
 import Paragraph from '../animations/Paragraph';
 import Label from '../animations/Label';
 import Highlight from '../animations/Highlight';
+
+import { ColorsManager } from './Colors';
+import AsyncLoad from './AsyncLoad';
+
 /**creates a Page object for pages
  * @param {string} element the class of root element of current page
  * @param {Object} elements elements inside of the root element class
@@ -26,6 +30,8 @@ export default class Page {
       animationTitles: '[data-animation="title"]',
       animationParagraphs: '[data-animation="paragraph"]',
       animationLabels: '[data-animation="label"]',
+
+      preloaders: '[data-src]',
     };
 
     this.transformPrefix = Prefix('transform');
@@ -63,6 +69,7 @@ export default class Page {
     });
 
     this.createAnimations();
+    this.createPreloader();
   }
 
   createAnimations() {
@@ -108,8 +115,19 @@ export default class Page {
     this.animations.push(...this.animationLabels);
   }
 
+  createPreloader() {
+    map(this.elements.preloaders, (element) => {
+      return new AsyncLoad({ element });
+    });
+  }
+
   show() {
     return new Promise((resolve) => {
+      ColorsManager.change({
+        backgroundColor: this.element.getAttribute('data-background'),
+        color: this.element.getAttribute('data-color'),
+      });
+
       this.animationIn = GSAP.timeline();
 
       this.animationIn.fromTo(
@@ -132,7 +150,7 @@ export default class Page {
 
   hide() {
     return new Promise((resolve) => {
-      this.removeListeners();
+      this.destroy();
 
       this.animationOut = GSAP.timeline();
 
@@ -189,5 +207,13 @@ export default class Page {
 
   removeListeners() {
     window.removeEventListener('mousewheel', this.onMousewheel.bind(this));
+  }
+
+  addEventHandlers() {}
+
+  removeEventHandlers() {}
+
+  destroy() {
+    this.removeListeners();
   }
 }

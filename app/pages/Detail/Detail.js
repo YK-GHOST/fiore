@@ -6,8 +6,22 @@ export default class Detail extends Page {
       id: 'Detail',
       element: '.detail',
       elements: {
-        title: '.detail__title',
+        button: '.detail__button',
       },
     });
+  }
+
+  create() {
+    super.create();
+
+    this.link = new Button({
+      element: this.elements.link,
+    });
+  }
+
+  destroy() {
+    super.destroy();
+
+    this.link.removeEventListeners();
   }
 }
