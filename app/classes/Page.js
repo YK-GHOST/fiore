@@ -1,7 +1,15 @@
 import GSAP from 'gsap';
+
 import each from 'lodash/each';
+import map from 'lodash/map';
+
+import normalizeWheel from 'normalize-wheel';
 import Prefix from 'prefix';
 
+import Title from '../animations/Title';
+import Paragraph from '../animations/Paragraph';
+import Label from '../animations/Label';
+import Highlight from '../animations/Highlight';
 /**creates a Page object for pages
  * @param {string} element the class of root element of current page
  * @param {Object} elements elements inside of the root element class
@@ -12,7 +20,13 @@ export default class Page {
   constructor({ element, elements, id }) {
     this.id = id;
     this.selector = element;
-    this.selectorChildren = { ...elements };
+    this.selectorChildren = {
+      ...elements,
+      animationHighlights: '[data-animation="highlight"]',
+      animationTitles: '[data-animation="title"]',
+      animationParagraphs: '[data-animation="paragraph"]',
+      animationLabels: '[data-animation="label"]',
+    };
 
     this.transformPrefix = Prefix('transform');
   }
@@ -48,7 +62,50 @@ export default class Page {
       }
     });
 
-    console.log(this.elements);
+    this.createAnimations();
+  }
+
+  createAnimations() {
+    this.animations = [];
+
+    //Highlight
+    this.animationHighlights = map(
+      this.elements.animationHighlights,
+      (element) => {
+        return new Highlight({
+          element,
+        });
+      }
+    );
+    this.animations.push(...this.animationHighlights);
+
+    //Titles
+    this.animationTitles = map(this.elements.animationTitles, (element) => {
+      return new Title({
+        element,
+      });
+    });
+    this.animations.push(...this.animationTitles);
+
+    //Paragraph
+    this.animationParagraphs = map(
+      this.elements.animationParagraphs,
+      (element) => {
+        return new Paragraph({
+          element,
+        });
+      }
+    );
+
+    this.animations.push(...this.animationParagraphs);
+
+    //Label
+    this.animationLabels = map(this.elements.animationLabels, (element) => {
+      return new Label({
+        element,
+      });
+    });
+    this.animations.push(...this.animationLabels);
   }
 
   show() {
@@ -91,12 +148,14 @@ export default class Page {
       this.scroll.limit =
         this.elements.wrapper.clientHeight - window.innerHeight;
     }
+
+    each(this.animations, (animation) => animation.onResize());
   }
 
   onMousewheel(event) {
-    const { deltaY } = event;
+    const normalized = normalizeWheel(event);
 
-    this.scroll.target += deltaY;
+    this.scroll.target += normalized.pixelY; //TIP normalized wheel
   }
 
   //DES LERPING

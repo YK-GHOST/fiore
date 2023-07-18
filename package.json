@@ -32,6 +32,7 @@
     "method-override": "^3.0.0",
     "mini-css-extract-plugin": "^2.7.6",
     "morgan": "^1.10.0",
+    "normalize-wheel": "^1.0.1",
     "optipng-bin": "^9.0.0",
     "postcss-loader": "^7.3.3",
     "prefix": "^1.0.0",

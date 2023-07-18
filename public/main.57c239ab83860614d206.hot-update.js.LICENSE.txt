@@ -1,0 +1,11 @@
+/*! classes/Animation */
+
+/*! gsap */
+
+/*! lodash/each */
+
+/*! utils/text */
+
+/*!*************************************!*\
+  !*** ./app/animations/Highlight.js ***!
+  \*************************************/

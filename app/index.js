@@ -6,10 +6,6 @@ import Detail from './pages/Detail/Detail';
 import Home from './pages/Home/Home';
 import Preloader from './components/Preloader';
 
-if (module.hot) {
-  module.hot.accept();
-}
-
 class App {
   constructor() {
     this.createPreloader();

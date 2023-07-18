@@ -10,6 +10,10 @@ const app = express();
 const path = require('path');
 const port = 3000;
 
+if (module.hot) {
+  module.hot.accept();
+}
+
 const Prismic = require('@prismicio/client');
 // const { Logger } = require('sass');
 // const PrismicH = require('@prismicio/helpers');
