@@ -15,6 +15,7 @@ if (module.hot) {
 }
 
 const Prismic = require('@prismicio/client');
+
 // const { Logger } = require('sass');
 // const PrismicH = require('@prismicio/helpers');
 
@@ -137,6 +138,7 @@ const handleRequest = async (api) => {
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'pug');
 app.locals.basedir = app.get('views');
+('');
 
 app.get('/', async (req, res) => {
   const api = await initApi(req);

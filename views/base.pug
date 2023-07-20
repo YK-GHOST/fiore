@@ -1,14 +1,14 @@
 block variables
 doctype html
 html(lang="en")
-    head 
+    head
     meta(charset="UTF-8")
     meta(name="viewport" content="width=device-width, initial-scale=1.0")
 
     base(href="/")
 
     title=meta.data.title
-        
+
     meta(name="description" content=meta.data.description)
 
     link(rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png")
@@ -33,7 +33,7 @@ html(lang="en")
 
     link(rel="stylesheet", href="main.css")
 
-    body 
+    body
       include ./partials/preloader
       include ./partials/navigation
 
@@ -41,4 +41,4 @@ html(lang="en")
         block content
 
 
-      script(src="main.js") 
+      script(src="main.js")
