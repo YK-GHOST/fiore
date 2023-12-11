@@ -26,7 +26,9 @@ export default class Canvas {
   }
 
   createRenderer() {
-    this.renderer = new Renderer();
+    this.renderer = new Renderer({
+      alpha: true,
+    });
 
     this.gl = this.renderer.gl; //TIP works like a canvas context
 
@@ -124,6 +126,7 @@ export default class Canvas {
     if (this.home) {
       this.home.update();
     }
+
     this.renderer.render({
       camera: this.camera,
       scene: this.scene,
